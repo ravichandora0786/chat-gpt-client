@@ -1,0 +1,53 @@
+.summarize-container, .chatbot-container, .js-converter-container,
+.scifi-image-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    background-color: lightgray;
+  }
+  .summarize-container.error {
+    border: 2px solid red;
+  } 
+  .error-message {
+    color: red;
+    margin-bottom: 1rem;
+  } 
+  .summary_text textarea,.image_text textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: .5rem;
+    margin-top: 1rem;
+  }
+  .summary-card, .paragraph-card, .response-card,
+  .code-card, .image-card{
+    margin-top: 2rem;
+    border: 1px solid #ccc;
+    box-shadow: 0;
+    height: 500px;
+    border-radius: 5px;
+    border-color: #999;
+    background-color: #f9f9f9;
+    padding: 1rem;
+  }
+  .placeholder {
+    border: none;
+  }
+  .placeholder-text {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 450px;
+    color: #999;
+    font-size: 18px;
+  }
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
