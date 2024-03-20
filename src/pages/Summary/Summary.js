@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './summary.css'
+import "./summary.css";
 import axios from "axios";
-
+import { SUMMARY } from "../route";
 
 const Summary = () => {
   const navigate = useNavigate();
@@ -15,8 +15,7 @@ const Summary = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:5000/api/v1/openai/summary", { text });
-      console.log(data);
+      const { data } = await axios.post(SUMMARY, { text });
       setSummary(data);
     } catch (err) {
       console.log(error);
@@ -33,41 +32,40 @@ const Summary = () => {
   return (
     <>
       <div
-        className={`summarize-container ${error ? 'error' : ''}`}
+        className={`summarize-container ${error ? "error" : ""}`}
         style={{
-          width: '40%',
-          margin: '2rem auto',
-          padding: '1rem',
-          borderRadius: '5px',
-          boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.1)',
-          backgroundColor: 'var(--color-primary)',
+          width: "40%",
+          margin: "2rem auto",
+          padding: "1rem",
+          borderRadius: "5px",
+          boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "var(--color-primary)",
         }}
       >
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <h3>Summarize Text</h3>
           <div className="summary_text">
-          <textarea
-            placeholder="Add your text"
-            required
-            value={text}
-            onChange={(e) => settext(e.target.value)}
-          />
+            <textarea
+              placeholder="Add your text"
+              required
+              value={text}
+              onChange={(e) => settext(e.target.value)}
+            />
           </div>
-          <div  style={{display:"grid", justifyItems:"end"}}>
-          <button className="btnn mb-3 " type="submit">Submit</button>
+          <div style={{ display: "grid", justifyItems: "end" }}>
+            <button className="btnn mb-3 " type="submit">
+              Submit
+            </button>
           </div>
           <div>
-          <p>
-            Not this tool? <a href="/">GO BACK</a>
-          </p>
+            <p>
+              Not this tool? <a href="/">GO BACK</a>
+            </p>
           </div>
-         
         </form>
 
-        <div
-          className={`summary-card ${summary ? '' : 'placeholder'}`}
-        >
+        <div className={`summary-card ${summary ? "" : "placeholder"}`}>
           {summary ? (
             <p>{summary}</p>
           ) : (
@@ -76,7 +74,6 @@ const Summary = () => {
         </div>
       </div>
     </>
-
   );
 };
 

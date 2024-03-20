@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { IMAGE } from "./route";
 
 const ScifiImage = () => {
   const navigate = useNavigate();
@@ -14,8 +15,7 @@ const ScifiImage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:5000/api/v1/openai/scifi-image", { text });
-      console.log(data);
+      const { data } = await axios.post(IMAGE, { text });
       setImage(data);
     } catch (err) {
       console.log(error);
@@ -32,14 +32,14 @@ const ScifiImage = () => {
   return (
     <>
       <div
-        className={`scifi-image-container ${error ? 'error' : ''}`}
+        className={`scifi-image-container ${error ? "error" : ""}`}
         style={{
-          width: '40%',
-          margin: '2rem auto',
-          padding: '2rem',
-          borderRadius: '5px',
-          boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.1)',
-          backgroundColor:'var(--color-primary)', // Change to your desired background color
+          width: "40%",
+          margin: "2rem auto",
+          padding: "2rem",
+          borderRadius: "5px",
+          boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "var(--color-primary)", // Change to your desired background color
         }}
       >
         {error && <div className="error-message">{error}</div>}
@@ -53,8 +53,10 @@ const ScifiImage = () => {
               onChange={(e) => settext(e.target.value)}
             />
           </div>
-          <div style={{display:"grid", justifyItems:"end"}}>
-            <button className="btnn mb-3" type="submit">Generate</button>
+          <div style={{ display: "grid", justifyItems: "end" }}>
+            <button className="btnn mb-3" type="submit">
+              Generate
+            </button>
           </div>
           <div>
             <p>
@@ -63,18 +65,19 @@ const ScifiImage = () => {
           </div>
         </form>
 
-        <div className={`image-card ${image ? '' : 'placeholder'}`}>
+        <div className={`image-card ${image ? "" : "placeholder"}`}>
           {image ? (
             <div className="image-wrapper">
               <img src={image} alt="Scifi Image" />
             </div>
           ) : (
-            <p className="placeholder-text">Your Scifi Image Will Appear Here</p>
+            <p className="placeholder-text">
+              Your Scifi Image Will Appear Here
+            </p>
           )}
         </div>
       </div>
     </>
-  
   );
 };
 
